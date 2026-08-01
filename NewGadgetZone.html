@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260731-05-8d4b1dd","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/1c274b9c2bdd3519.telemetry_sdk.js" integrity="sha512-QvDGWM2/VIwB7KXA4cwqkIBlxCdJGd0uO9ksM8wsqNKNiFgewrwdYlGY9ioCTg42Djm5Sw7uha/WH60UzzKOhQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Gadget Zone</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+          font-family: 'DM Sans', sans-serif;
+          position: relative;
+          overflow-x: hidden;
+          background:
+            radial-gradient(circle at top left, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 22%, rgba(255, 255, 255, 0) 55%),
+            radial-gradient(circle at top right, rgba(219, 234, 254, 0.7) 0%, rgba(219, 234, 254, 0.14) 26%, rgba(219, 234, 254, 0) 58%),
+            linear-gradient(180deg, #eef4ff 0%, #f8fbff 42%, #ffffff 100%);
+        }
+        body::before,
+        body::after {
+          content: '';
+          position: fixed;
+          inset: auto;
+          width: 26rem;
+          height: 26rem;
+          border-radius: 9999px;
+          pointer-events: none;
+          z-index: 0;
+          filter: blur(28px);
+          opacity: 0.55;
+        }
+        body::before {
+          top: -8rem;
+          left: -8rem;
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0.08) 42%, rgba(59, 130, 246, 0) 72%);
+        }
+        body::after {
+          bottom: -10rem;
+          right: -9rem;
+          background: radial-gradient(circle, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.05) 40%, rgba(15, 23, 42, 0) 72%);
+        }
+      h1, h2, .brand-title { font-family: 'Cormorant Garamond', serif; }
+      .brand-title { letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28); }
+      .fire-emoji {
+          display: inline-block;
+          transform-origin: 50% 85%;
+          filter: drop-shadow(0 0 8px rgba(255, 120, 0, 0.45));
+          animation: fireFlicker 1s ease-in-out infinite, fireGlow 1.6s ease-in-out infinite;
+      }
+      @keyframes fireFlicker {
+          0%, 100% { transform: translateY(0) scale(1) rotate(-3deg); }
+          25% { transform: translateY(-1px) scale(1.06, 0.96) rotate(3deg); }
+          50% { transform: translateY(0) scale(0.98, 1.08) rotate(-2deg); }
+          75% { transform: translateY(-1px) scale(1.08, 0.94) rotate(2deg); }
+      }
+      @keyframes fireGlow {
+          0%, 100% { filter: drop-shadow(0 0 7px rgba(255, 120, 0, 0.35)) drop-shadow(0 0 12px rgba(255, 60, 0, 0.18)); }
+          50% { filter: drop-shadow(0 0 11px rgba(255, 170, 0, 0.55)) drop-shadow(0 0 18px rgba(255, 80, 0, 0.28)); }
+      }
+        @keyframes pageReveal {
+          from { opacity: 0; transform: translateY(12px) scale(0.99); filter: blur(4px); }
+          to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .page-enter { animation: pageReveal 0.85s ease both; }
+        @media (prefers-reduced-motion: reduce) {
+          .page-enter, .fade-up { animation: none !important; opacity: 1 !important; }
+          .fire-emoji { animation: none !important; }
+          .social-btn { transition: none; }
+        }
+        .glow-telegram:hover { box-shadow: 0 8px 32px rgba(38,166,224,0.35); }
+        .glow-whatsapp:hover { box-shadow: 0 8px 32px rgba(37,211,102,0.35); }
+        .glow-instagram:hover { box-shadow: 0 8px 32px rgba(225,48,108,0.35); }
+        .glow-facebook:hover { box-shadow: 0 8px 32px rgba(24,119,242,0.35); }
+        .glow-youtube:hover { box-shadow: 0 8px 32px rgba(255,0,0,0.35); }
+        .glow-x:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .social-btn { transition: all 0.3s ease; transform: translateY(0); }
+        .social-btn:hover { transform: translateY(-2px); }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .fade-up { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+        .fade-up:nth-child(1) { animation-delay: 0.05s; }
+        .fade-up:nth-child(2) { animation-delay: 0.1s; }
+        .fade-up:nth-child(3) { animation-delay: 0.15s; }
+        .fade-up:nth-child(4) { animation-delay: 0.2s; }
+        .fade-up:nth-child(5) { animation-delay: 0.25s; }
+        .fade-up:nth-child(6) { animation-delay: 0.3s; }
+    </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/63b5ed99e5b990a7.data_sdk.js" type="text/javascript" integrity="sha512-fLUGE0rNLPgXS9olxs6QORKg6Diqpi0PSKoNistdAaH/GruBuq5/XhrOdSOcKfqcIIRQ1KvO66J1vCBvvLj4rA=="></script>
+  <script src="/_sdk/797e0a7e8af7c7f8.resizing_sdk.js" type="text/javascript" integrity="sha512-giNZj5eBnASPpYcJXEVOn6FguxFDnaH+gnf5nbRfUgfRDqtOdV+5Dna/CwvXiPeR//Plhtbt32CML3VF4+oCLw=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen w-full" style="background: radial-gradient(at center top, rgb(240, 244, 255) 0%, rgb(255, 255, 255) 60%);">
+  <main class="page-enter relative z-10 w-full min-h-screen"><!-- Header -->
+   <header class="w-full" style="background: rgb(15, 23, 42);">
+    <div class="brand-title w-full px-5 py-5 text-center text-white shadow-sm" style="font-weight: 700; font-size: 24px; line-height: 1.1;">New Gadget Zone</div>
+   </header>
+   <div class="max-w-lg mx-auto px-5 py-12"><!-- Hero -->
+  <header class="text-center mb-10"><span data-template-id="badge" class="canva-tag inline-block px-5 py-2 rounded-full font-medium mb-5 shadow-sm" style="background: rgb(254, 243, 199); color: rgb(146, 64, 14); font-weight: 600; font-style: normal; font-size: 18px; line-height: 1.2;"><span class="fire-emoji" aria-hidden="true">🔥</span> Join <span data-count>0</span>+ Smart Shoppers</span>
+    <h1 data-template-id="hero-heading" class="canva-text font-bold leading-tight mb-4" style="color: rgb(15, 23, 42); font-weight: 700; font-style: normal; font-size: 32px;">Join Our Exclusive Community</h1>
+    <p data-template-id="hero-subheading" class="canva-text leading-relaxed" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 16px;">Get daily deals, product updates, exclusive offers, helpful tips and latest recommendations. Follow us on all platforms to stay connected.</p>
+   </header><!-- Social Buttons -->
+   <nav class="flex flex-col gap-4 mb-10" aria-label="Social links"><a href="https://t.me/smartdealhub499" target="_blank" rel="noopener noreferrer" data-template-id="btn-telegram" class="canva-button social-btn fade-up flex items-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg glow-telegram" style="background: rgb(38, 165, 228);">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path>
+     </svg><span>Join Telegram Channel</span> </a> <a href="https://whatsapp.com/channel/0029VbDWKGk8F2p8uP2FBO39" target="_blank" rel="noopener noreferrer" data-template-id="btn-whatsapp" class="canva-button social-btn fade-up flex items-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg glow-whatsapp" style="background: rgb(37, 211, 102);">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path>
+     </svg><span>Join WhatsApp Channel</span> </a> <a href="https://linktw.in/DcUpOH" target="_blank" rel="noopener noreferrer" data-template-id="btn-instagram" class="canva-button social-btn fade-up flex items-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg glow-instagram" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path>
+     </svg><span>Follow Instagram</span> </a> <a href="https://www.facebook.com/share/1DK9gdKZQN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" data-template-id="btn-facebook" class="canva-button social-btn fade-up flex items-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg glow-facebook" style="background: rgb(24, 119, 242);">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+     </svg><span>Follow Facebook Page</span> </a> <a href="https://linktw.in/DkaYUL" target="_blank" rel="noopener noreferrer" data-template-id="btn-youtube" class="canva-button social-btn fade-up flex items-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg glow-youtube" style="background: rgb(255, 0, 0);">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+     </svg><span>Subscribe YouTube Channel</span> </a>
+   </nav><!-- Note -->
+   <p data-template-id="community-note" class="canva-text text-center text-sm mb-12" style="color: rgb(100, 116, 139); font-weight: 400; font-style: normal; font-size: 16px;">Don't miss new offers, updates and exclusive content. Join our community today.</p><!-- Trust Section -->
+   <section class="text-center mb-12">
+    <h2 data-template-id="trust-heading" class="canva-text font-bold mb-5" style="color: rgb(15, 23, 42); font-weight: 700; font-style: normal; font-size: 22px;">Why Join Us?</h2>
+    <ul class="space-y-3 text-left max-w-xs mx-auto">
+     <li data-template-id="trust-1" class="canva-text flex items-center gap-2" style="color: rgb(51, 65, 85); font-weight: 400; font-style: normal; font-size: 16px;">✓ Latest Product Updates</li>
+     <li data-template-id="trust-2" class="canva-text flex items-center gap-2" style="color: rgb(51, 65, 85); font-weight: 400; font-style: normal; font-size: 16px;">✓ Exclusive Deals &amp; Offers</li>
+     <li data-template-id="trust-3" class="canva-text flex items-center gap-2" style="color: rgb(51, 65, 85); font-weight: 400; font-style: normal; font-size: 16px;">✓ Helpful Recommendations</li>
+     <li data-template-id="trust-4" class="canva-text flex items-center gap-2" style="color: rgb(51, 65, 85); font-weight: 400; font-style: normal; font-size: 16px;">✓ Free Community Access</li>
+    </ul>
+  </section>
+  </div>
+  </main><!-- Footer -->
+  <footer data-template-id="footer-section" class="canva-footer w-full px-5 py-10" style="background: rgb(15, 23, 42);">
+   <div class="max-w-lg mx-auto text-center space-y-4">
+    <p data-template-id="footer-disclosure" class="canva-text text-sm leading-relaxed" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Affiliate Disclosure: Some links on this page may be affiliate links. If you purchase through these links, we may earn a commission at no additional cost to you. We only recommend products and services that may provide value to our audience.</p>
+    <p data-template-id="footer-links" class="canva-text text-sm" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Privacy Policy | Terms | Contact</p>
+   </div>
+  </footer>
+  <script src="/_sdk/afc2d393c2ac926b.editing_sdk.js" integrity="sha512-Ue7lZoRec1IGq7j3H/38aWZalTxanTjFGoCKdWTFUGFJwCO6Pinekpb6vP1nEQ3ZFuEOglmaFKfrRMeLheTxnw=="></script>
+  <script>
+   window.addEventListener('DOMContentLoaded', function () {
+    var badge = document.querySelector('[data-template-id="badge"]');
+    if (!badge) return;
+
+    var duration = 1400;
+    var start = null;
+    var target = 1000;
+      var countValue = badge.querySelector('[data-count]');
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!countValue) return;
+
+      if (reducedMotion) {
+       countValue.textContent = target.toLocaleString('en-US');
+       return;
+      }
+
+    function formatCount(value) {
+     return Math.min(target, Math.round(value)).toLocaleString('en-US');
+    }
+
+    function animateCount(timestamp) {
+     if (!start) start = timestamp;
+     var progress = Math.min((timestamp - start) / duration, 1);
+     var eased = 1 - Math.pow(1 - progress, 3);
+      countValue.textContent = formatCount(target * eased);
+     if (progress < 1) {
+      window.requestAnimationFrame(animateCount);
+     }
+    }
+
+    window.requestAnimationFrame(animateCount);
+   });
+  </script>
+ 
+</body></html>
