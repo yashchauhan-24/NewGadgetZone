@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Gadget Zone — Deals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --bg: #0a0d12;
+            --surface: #12161d;
+            --surface-2: #181d26;
+            --hairline: rgba(232, 230, 225, 0.08);
+            --copper: #d3a56d;
+            --copper-soft: rgba(211, 165, 109, 0.14);
+            --text: #eae7e0;
+            --text-dim: #9a9ca3;
+            --text-faint: #5f636d;
+            --radius: 14px;
+            --transition: 0.25s ease;
+            --green: #67d59a;
+            --red: #f87171;
+            --gold: #fbbf24;
+            --telegram-blue: #3fb4e6;
+            --telegram-dark: #1c7fb8;
+        }
+        html {
+            background: var(--bg);
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+            background-image:
+                linear-gradient(var(--hairline) 1px, transparent 1px),
+                linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, black 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, black 0%, transparent 75%);
+        }
+        .glow-a {
+            position: fixed;
+            top: -10rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36rem;
+            height: 22rem;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse, rgba(211, 165, 109, 0.14) 0%, rgba(211, 165, 109, 0) 70%);
+            filter: blur(10px);
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── HEADER ─── */
+        .site-header {
+            width: 100%;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--hairline);
+            background: rgba(10, 13, 18, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            gap: 12px;
+        }
+        @media (min-width: 740px) {
+            .header-inner {
+                height: 68px;
+                padding: 0 8px;
+            }
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .brand-name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .brand-name span {
+            color: var(--copper);
+        }
+        .brand-tag {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-faint);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-left: 2px;
+            display: none;
+        }
+        @media (min-width: 480px) {
+            .brand-name {
+                font-size: 20px;
+            }
+            .brand-tag {
+                display: inline-block;
+            }
+        }
+        @media (max-width: 400px) {
+            .brand-name {
+                font-size: 15px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: color var(--transition), background var(--transition);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        @media (min-width: 740px) {
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 14px;
+            }
+        }
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text);
+            background: var(--surface);
+        }
+        .nav-links a.active {
+            color: var(--text);
+            background: var(--surface);
+        }
+        .nav-cta {
+            background: var(--copper-soft) !important;
+            color: var(--copper) !important;
+            font-weight: 600;
+            padding: 6px 14px !important;
+        }
+        @media (min-width: 740px) {
+            .nav-cta {
+                padding: 8px 18px !important;
+            }
+        }
+        .nav-cta:hover {
+            background: rgba(211, 165, 109, 0.22) !important;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 739px) {
+            .nav-toggle {
+                display: flex;
+            }
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                background: rgba(10, 13, 18, 0.98);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                padding: 12px 16px 20px;
+                gap: 2px;
+                border-bottom: 1px solid var(--hairline);
+                transform: translateY(-120%);
+                opacity: 0;
+                transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+                pointer-events: none;
+            }
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .nav-links a {
+                padding: 12px 16px;
+                width: 100%;
+                text-align: center;
+                font-size: 15px;
+            }
+            .nav-links a.nav-cta {
+                margin-top: 4px;
+            }
+        }
+
+        /* ─── DEALS PAGE ─── */
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 16px 32px;
+            flex: 1;
+            width: 100%;
+        }
+        @media (min-width: 480px) {
+            .wrap {
+                padding: 40px 22px 32px;
+            }
+        }
+
+        /* ─── HERO SECTION ─── */
+        .deals-hero {
+            text-align: center;
+            padding: 40px 20px 48px;
+            margin-bottom: 32px;
+            background: var(--surface);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+        .deals-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(63, 180, 230, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .deals-hero .badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(211, 165, 109, 0.12);
+            color: var(--copper);
+            margin-bottom: 14px;
+        }
+        .deals-hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .deals-hero h1 span {
+            color: var(--copper);
+        }
+        .deals-hero h1 .highlight {
+            color: var(--telegram-blue);
+        }
+        .deals-hero p {
+            color: var(--text-dim);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 580px;
+            margin: 0 auto 24px;
+        }
+        .deals-hero .stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .deals-hero .stats .stat-item {
+            text-align: center;
+        }
+        .deals-hero .stats .stat-item .number {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            color: var(--copper);
+        }
+        .deals-hero .stats .stat-item .label {
+            font-size: 12px;
+            color: var(--text-faint);
+            letter-spacing: 0.04em;
+        }
+        .deals-hero .stats .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--hairline);
+        }
+
+        .join-btn-big {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            border-radius: 60px;
+            background: linear-gradient(150deg, #3fb4e6, #1c7fb8);
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 32px rgba(28, 127, 184, 0.35);
+            margin-top: 8px;
+        }
+        .join-btn-big:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(28, 127, 184, 0.5);
+        }
+        .join-btn-big svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+            .deals-hero h1 {
+                font-size: 24px;
+            }
+            .deals-hero .stats {
+                gap: 16px;
+            }
+            .deals-hero .stats .stat-item .number {
+                font-size: 22px;
+            }
+            .join-btn-big {
+                padding: 14px 28px;
+                font-size: 16px;
+            }
+        }
+
+        /* ─── SCREENSHOTS GRID ─── */
+        .screenshots-section {
+            margin-top: 20px;
+        }
+        .screenshots-section .section-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .screenshots-section .section-sub {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .screenshot-card {
+            background: var(--surface);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform var(--transition), border-color var(--transition);
+        }
+        .screenshot-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(211, 165, 109, 0.25);
+        }
+        .screenshot-card .img-wrap {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+            background: var(--surface-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .screenshot-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .screenshot-card .img-wrap .fallback {
+            font-size: 42px;
+            color: var(--text-faint);
+            opacity: 0.2;
+            user-select: none;
+        }
+        .screenshot-card .card-footer {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--hairline);
+        }
+        .screenshot-card .card-footer .tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .screenshot-card .card-footer .price-tag {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        /* ─── CTA BANNER ─── */
+        .cta-banner {
+            margin-top: 40px;
+            padding: 36px 24px;
+            background: linear-gradient(150deg, rgba(63, 180, 230, 0.08), rgba(28, 127, 184, 0.04));
+            border: 1px solid rgba(63, 180, 230, 0.15);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .cta-banner h2 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .cta-banner h2 span {
+            color: var(--telegram-blue);
+        }
+        .cta-banner p {
+            color: var(--text-dim);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        .cta-banner .join-btn-big {
+            box-shadow: 0 8px 32px rgba(28, 127, 184, 0.3);
+        }
+        .cta-banner .join-btn-big:hover {
+            box-shadow: 0 12px 40px rgba(28, 127, 184, 0.45);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--hairline);
+            padding: 28px 16px 32px;
+            margin-top: 20px;
+            background: rgba(10, 13, 18, 0.6);
+        }
+        @media (min-width: 480px) {
+            footer {
+                padding: 34px 22px 40px;
+                margin-top: 24px;
+            }
+        }
+        .footer-in {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-in p {
+            font-size: 11.5px;
+            line-height: 1.6;
+            color: var(--text-faint);
+            margin: 0 0 10px;
+        }
+        @media (min-width: 480px) {
+            .footer-in p {
+                font-size: 12.5px;
+                line-height: 1.7;
+                margin: 0 0 12px;
+            }
+        }
+        .footer-links {
+            font-size: 11.5px;
+            color: var(--text-dim);
+        }
+        @media (min-width: 480px) {
+            .footer-links {
+                font-size: 12.5px;
+            }
+        }
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--copper);
+        }
+
+        /* ─── ANIMATION ─── */
+        @media (prefers-reduced-motion: reduce) {
+            .screenshot-card {
+                transition: none;
+            }
+            .nav-links {
+                transition: none;
+            }
+        }
+        .reveal {
+            opacity: 0;
+            animation: up 0.6s ease forwards;
+        }
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .r1 {
+            animation-delay: 0.02s;
+        }
+        .r2 {
+            animation-delay: 0.08s;
+        }
+        .r3 {
+            animation-delay: 0.14s;
+        }
+        .r4 {
+            animation-delay: 0.18s;
+        }
+        .r5 {
+            animation-delay: 0.22s;
+        }
+        .r6 {
+            animation-delay: 0.26s;
+        }
+        .r7 {
+            animation-delay: 0.30s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="glow-a" aria-hidden="true"></div>
+
+    <main>
+        <!-- ═══ HEADER ═══ -->
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="index.html" class="brand" aria-label="New Gadget Zone — Home">
+                    <span class="brand-name">New <span>Gadget</span> Zone</span>
+                    <span class="brand-tag">daily deals</span>
+                </a>
+
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <ul class="nav-links" role="navigation">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="deals.html" class="active">Deals</a></li>
+                    <li><a href="https://t.me/smartdealhub499" class="nav-cta">Join</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- ═══ DEALS PAGE ═══ -->
+        <div class="wrap">
+
+            <!-- ─── HERO ─── -->
+            <section class="deals-hero reveal r1">
+                <div class="badge">⚡ Live Deals</div>
+                <h1>🔥 <span>Exclusive</span> Discounts <br />Only on <span class="highlight">Telegram</span></h1>
+                <p>Get the best deals before anyone else. We share <strong>80-90% off</strong> offers, <strong>flash sales</strong>, and <strong>limited-time steals</strong> — all on our Telegram channel.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="number">100+</div>
+                        <div class="label">Active Members</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="number">80-90%</div>
+                        <div class="label">Off on Top Brands</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="number">24/7</div>
+                        <div class="label">Live Updates</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── SCREENSHOTS ─── -->
+            <section class="screenshots-section reveal r2">
+                <h2 class="section-title">📱 What's inside our Telegram channel?</h2>
+                <p class="section-sub">Real screenshots from our channel — <strong>80-90% off</strong> deals on fashion, footwear, home &amp; kitchen, gadgets &amp; more.</p>
+
+                <div class="screenshots-grid">
+
+                    <!-- Screenshot 1: Bags & Fashion -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-1.png" alt="Telegram Deals - Bags & Fashion" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>👜</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">👛 Bags &amp; Fashion</span>
+                            <span class="price-tag">₹147 onwards</span>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 2: Footwear -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-2.png" alt="Telegram Deals - Footwear" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>👟</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">👟 Footwear</span>
+                            <span class="price-tag">₹224 onwards</span>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 3: Kids & More -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-3.png" alt="Telegram Deals - Kids & More" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>👶</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">👶 Kids &amp; Lifestyle</span>
+                            <span class="price-tag">₹559 onwards</span>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 4: Home & Kitchen -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-4.png" alt="Telegram Deals - Home & Kitchen" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>🏠</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">🏠 Home &amp; Kitchen</span>
+                            <span class="price-tag">₹89 onwards</span>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 5: Accessories -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-5.png" alt="Telegram Deals - Accessories" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>⌚</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">⌚ Watches &amp; Accessories</span>
+                            <span class="price-tag">₹229 onwards</span>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 6: Home Essentials -->
+                    <div class="screenshot-card">
+                        <div class="img-wrap">
+                            <img src="https://images.weserv.nl/?url=raw.githubusercontent.com/your-repo/screenshots/main/telegram-deals-6.png" alt="Telegram Deals - Home Essentials" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=fallback>🚿</span>'" />
+                        </div>
+                        <div class="card-footer">
+                            <span class="tag">🚿 Home Essentials</span>
+                            <span class="price-tag">₹54 onwards</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ─── CTA BANNER ─── -->
+            <section class="cta-banner reveal r4">
+                <h2>🚀 Join <span>New Gadget Zone</span> on Telegram</h2>
+                <p>Don't miss out on <strong>80-90% off deals</strong> on fashion, footwear, home, kitchen &amp; more. <br />Over <strong>100+ smart shoppers</strong> are already saving big!</p>
+                <a href="https://t.me/smartdealhub499" target="_blank" rel="noopener noreferrer" class="join-btn-big">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Join Telegram Now — It's Free
+                </a>
+            </section>
+
+        </div>
+
+        <footer>
+            <div class="footer-in">
+                <p>Your daily source for the best gadget deals, reviews, and tech news. Prices may vary.</p>
+                <p class="footer-links"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Mobile nav toggle
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            this.classList.toggle('open');
+            document.querySelector('.nav-links').classList.toggle('open');
+            this.setAttribute('aria-expanded', this.classList.contains('open'));
+        });
+
+        // Close nav on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                var toggle = document.querySelector('.nav-toggle');
+                var nav = document.querySelector('.nav-links');
+                if (window.innerWidth < 740) {
+                    toggle.classList.remove('open');
+                    nav.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
